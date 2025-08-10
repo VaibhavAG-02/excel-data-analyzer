@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Data Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Excel Data Analyzer</h1>
+            <p class="header-subtitle">Upload your Excel file for comprehensive data analysis and insights</p>
+        </header>
+
+        <!-- Privacy Notice -->
+        <div class="privacy-notice">
+            <p><strong>🔒 Privacy:</strong> All file processing happens locally in your browser. No data is sent to any server.</p>
+        </div>
+
+        <!-- File Upload Section -->
+        <section class="upload-section">
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-content">
+                    <div class="upload-icon">📊</div>
+                    <h3>Drop your Excel file here</h3>
+                    <p>or click to browse for a file</p>
+                    <div class="file-formats">
+                        <span class="format-tag">.xlsx</span>
+                        <span class="format-tag">.xls</span>
+                        <span class="size-limit">Max 10MB</span>
+                    </div>
+                    <input type="file" id="fileInput" accept=".xlsx,.xls" hidden>
+                </div>
+            </div>
+            <div class="progress-container hidden" id="progressContainer">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p id="progressText">Processing file...</p>
+            </div>
+        </section>
+
+        <!-- File Info Section -->
+        <section class="file-info-section hidden" id="fileInfoSection">
+            <div class="card">
+                <div class="card__header">
+                    <h3>File Information</h3>
+                </div>
+                <div class="card__body">
+                    <div class="file-info-grid">
+                        <div class="info-item">
+                            <label>Filename:</label>
+                            <span id="fileName"></span>
+                        </div>
+                        <div class="info-item">
+                            <label>File Size:</label>
+                            <span id="fileSize"></span>
+                        </div>
+                        <div class="info-item">
+                            <label>Sheets:</label>
+                            <div id="sheetSelector"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Preview Section -->
+        <section class="data-preview-section hidden" id="dataPreviewSection">
+            <div class="card">
+                <div class="card__header">
+                    <h3>Data Preview</h3>
+                    <div class="data-actions">
+                        <button class="btn btn--sm btn--outline" id="downloadCsvBtn">Download as CSV</button>
+                        <button class="btn btn--sm btn--secondary" id="newAnalysisBtn">New Analysis</button>
+                    </div>
+                </div>
+                <div class="card__body">
+                    <div class="data-summary">
+                        <span>Rows: <strong id="rowCount">0</strong></span>
+                        <span>Columns: <strong id="colCount">0</strong></span>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table" id="dataTable">
+                            <thead id="tableHead"></thead>
+                            <tbody id="tableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analysis Dashboard -->
+        <section class="analysis-section hidden" id="analysisSection">
+            <!-- Summary Statistics -->
+            <div class="card">
+                <div class="card__header">
+                    <h3>📈 Summary Statistics</h3>
+                </div>
+                <div class="card__body">
+                    <div class="stats-grid" id="summaryStats"></div>
+                </div>
+            </div>
+
+            <!-- Data Quality -->
+            <div class="card">
+                <div class="card__header">
+                    <h3>🔍 Data Quality Assessment</h3>
+                </div>
+                <div class="card__body">
+                    <div class="quality-metrics" id="qualityMetrics"></div>
+                </div>
+            </div>
+
+            <!-- Visualizations -->
+            <div class="card">
+                <div class="card__header">
+                    <h3>📊 Data Visualizations</h3>
+                </div>
+                <div class="card__body">
+                    <div class="charts-container" id="chartsContainer"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Error Messages -->
+        <div class="error-message hidden" id="errorMessage">
+            <div class="status status--error">
+                <span id="errorText"></span>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
